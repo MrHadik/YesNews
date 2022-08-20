@@ -14,7 +14,7 @@ export default class NewsPage extends Component {
 
     async componentDidMount() {
         this.setState({ load: true })
-        let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=${this.props.apikey}&pageSize=${this.props.pagesize}&page=1`
+        let url = `https://newsapi.org/v2/top-headlines?category=${this.props.categ}&country=${this.props.country}&apiKey=${this.props.apikey}&pageSize=${this.props.pagesize}&page=1`
         let data = await fetch(url);
         let parseData = await data.json();
         this.setState({
@@ -26,7 +26,7 @@ export default class NewsPage extends Component {
 
     handelprives = async () => {
         this.setState({ load: true })
-        let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=${this.props.apikey}&pageSize=${this.props.pagesize}&page=${this.state.page - 1}`
+        let url = `https://newsapi.org/v2/top-headlines?category=${this.props.categ}&country=${this.props.country}&apiKey=${this.props.apikey}&pageSize=${this.props.pagesize}&page=${this.state.page - 1}`
         let data = await fetch(url);
         let parseData = await data.json();
         this.setState({
@@ -40,7 +40,7 @@ export default class NewsPage extends Component {
     handelnext = async () => {
         if (this.state.page + 1 <= Math.ceil(this.state.totalResults / this.props.pagesize)) {
             this.setState({ load: true })
-            let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=25e0c07e1d22488abae8640dd274f3e9&pageSize=${this.props.pagesize}&page=${this.state.page + 1}`
+            let url = `https://newsapi.org/v2/top-headlines?category=${this.props.categ}&country=${this.props.country}&apiKey=${this.props.apikey}&pageSize=${this.props.pagesize}&page=${this.state.page + 1}`
             let data = await fetch(url);
             let parseData = await data.json();
             this.setState({
