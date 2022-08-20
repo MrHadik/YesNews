@@ -5,8 +5,7 @@ import NewsPage from './compornet/NewsPage';
 import {
   BrowserRouter as Router,
   Route,
-  Routes,
-  
+  Routes
 } from "react-router-dom";
 
 export default class App extends Component {
@@ -14,7 +13,7 @@ export default class App extends Component {
    
     const data ={
       key: 'a02dfc2ab6584347a08d36cb4c05322f',
-      country: 'in'
+      country: 'us'
     }
     return (
       <div>

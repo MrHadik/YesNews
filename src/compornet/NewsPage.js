@@ -12,9 +12,22 @@ export default class NewsPage extends Component {
         }
     }
 
+    // async updatenews (){
+    //     this.setState({ load: true })
+    //     let url = `https://newsapi.org/v2/top-headlines?category=${this.props.categ}&country=${this.props.country}&apiKey=${this.props.apikey}&pageSize=${this.props.pagesize}&page=${this.state.page}`
+    //     let data = await fetch(url);
+    //     let parseData = await data.json();
+    //     this.setState({
+    //         articles: parseData.articles,
+    //         totalResults: parseData.totalResults,
+    //         load: false
+    //     });
+
+    // }
+
     async componentDidMount() {
         this.setState({ load: true })
-        let url = `https://newsapi.org/v2/top-headlines?category=${this.props.categ}&country=${this.props.country}&apiKey=${this.props.apikey}&pageSize=${this.props.pagesize}&page=1`
+        let url = `https://newsapi.org/v2/top-headlines?category=${this.props.categ}&country=${this.props.country}&apiKey=${this.props.apikey}&pageSize=${this.props.pagesize}&page=${this.state.page}`
         let data = await fetch(url);
         let parseData = await data.json();
         this.setState({
@@ -34,6 +47,8 @@ export default class NewsPage extends Component {
             page: this.state.page - 1,
             load: false
         })
+        // this.setState({page: this.state.page - 1})
+        // this.updatenews();
     }
 
 
@@ -48,6 +63,8 @@ export default class NewsPage extends Component {
                 page: this.state.page + 1,
                 load: false
             })
+            // this.setState({page: this.state.page + 1})
+            // this.updatenews();
         }
     }
     render() {
