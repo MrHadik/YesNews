@@ -14,7 +14,7 @@ export default class App extends Component {
    
     const data ={
       key: 'a02dfc2ab6584347a08d36cb4c05322f',
-      country: 'us'
+      country: 'in'
     }
     return (
       <div>
@@ -22,7 +22,7 @@ export default class App extends Component {
         <Router>
         <NevBar />
           <Routes>
-            <Route exact  path="/" element={<NewsPage pagesize={12} key='/' categ={'general'} country={data.country} apikey={data.key}/>} />
+            <Route exact  path="/" element={<NewsPage pagesize={12} key='general' categ={'general'} country={data.country} apikey={data.key}/>} />
             <Route exact  path="/business" element={<NewsPage key='business' pagesize={12} categ={'business'} country={data.country} apikey={data.key}/>} />
             <Route exact  path="/entertainment" element={<NewsPage key='entertainment' pagesize={12} categ={'entertainment'} country={data.country} apikey={data.key}/>} />
             <Route exact  path="/health" element={<NewsPage key='health' pagesize={12} categ={'health'} country={data.country} apikey={data.key}/>} />

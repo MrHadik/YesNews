@@ -15,7 +15,7 @@ export class Newsbage extends Component {
                 <div className="card-body ">
                     <h5 className="card-title">{title}</h5>
                     <p className="card-text">{dipriptin}</p>
-                    <p className="card-text"><small className="text-muted">Post By {author} on {pdate}</small></p>
+                    <p className="card-text"><small className="text-muted">Post By {author} on {new Date(pdate).toUTCString()}</small></p>
                     <a href={url} target="_balnk"  className="btn btn-sm btn-primary">Read More</a>
                 </div>
             </div>
