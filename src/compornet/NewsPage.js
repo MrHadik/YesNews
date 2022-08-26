@@ -15,19 +15,6 @@ export default class NewsPage extends Component {
         }
     }
 
-    // async updatenews (){
-    //     this.setState({ load: true })
-    //     let url = `https://newsapi.org/v2/top-headlines?category=${this.props.categ}&country=${this.props.country}&apiKey=${this.props.apikey}&pageSize=${this.props.pagesize}&page=${this.state.page}`
-    //     let data = await fetch(url);
-    //     let parseData = await data.json();
-    //     this.setState({
-    //         articles: parseData.articles,
-    //         totalResults: parseData.totalResults,
-    //         load: false
-    //     });
-
-    // }
-
     async componentDidMount() {
                   //loading gif show and waait for load loading 
         let url = `https://newsapi.org/v2/top-headlines?category=${this.props.categ}&country=${this.props.country}&apiKey=${this.props.apikey}&pageSize=${this.props.pagesize}&page=${this.state.page}`
@@ -39,35 +26,6 @@ export default class NewsPage extends Component {
             // page: this.state.page + 1
         });
     }
-
-    // handelprives = async () => {
-       
-    //     let url = `https://newsapi.org/v2/top-headlines?category=${this.props.categ}&country=${this.props.country}&apiKey=${this.props.apikey}&pageSize=${this.props.pagesize}&page=${this.state.page - 1}`
-    //     let data = await fetch(url);
-    //     let parseData = await data.json();
-    //     this.setState({
-    //         articles: parseData.articles,
-    //         page: this.state.page - 1,
-           
-    //     })
-    //     // this.setState({page: this.state.page - 1})
-    //     // this.updatenews();
-    // }
-
-
-    // handelnext = async () => {
-    //     if (this.state.page + 1 <= Math.ceil(this.state.totalResults / this.props.pagesize)) {
-    //         let url = `https://newsapi.org/v2/top-headlines?category=${this.props.categ}&country=${this.props.country}&apiKey=${this.props.apikey}&pageSize=${this.props.pagesize}&page=${this.state.page + 1}`
-    //         let data = await fetch(url);
-    //         let parseData = await data.json();
-    //         this.setState({
-    //             articles: parseData.articles,
-    //             page: this.state.page + 1
-    //         })
-    //         // this.setState({page: this.state.page + 1})
-    //         // this.updatenews();
-    //     }
-    // }
 
     fetchMoreData = async () => {
         this.setState({ page: this.state.page + 1 })
@@ -84,9 +42,7 @@ export default class NewsPage extends Component {
     render() {
         return (
             <>
-                {/* {this.state.load && <Loding/>}*/}
                 <button type="button" disabled="True" className="btn mx-3 btn-secondary">Total News: {this.state.totalResults}</button>
-                
                 <InfiniteScroll
                     dataLength={this.state.articles.length}
                     next={this.fetchMoreData}
@@ -101,17 +57,6 @@ export default class NewsPage extends Component {
                             })}
                         </div></div>
                 </InfiniteScroll >
-                {/* <div className="btn-toolbar d-flex justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
-                    <div className="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" disabled={this.state.page <= 1} onClick={this.handelprives} className="btn btn-primary">&larr; Prives</button>
-                        <button type="button" disabled="True" className="btn btn-light">{this.state.page}</button>
-                        <button type="button" disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pagesize)} onClick={this.handelnext} className="btn btn-primary">Next  &rarr;</button>
-                    </div>
-                    <div className="btn-group" role="group" aria-label="Second group">
-                        <button type="button" disabled="True" className="btn mx-3 btn-secondary">Total News: {this.state.totalResults}</button>
-                    </div>
-                </div> */}
-
             </>
         )
     }
