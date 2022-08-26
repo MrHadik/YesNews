@@ -17,7 +17,6 @@ export class Newsbage extends Component {
                     <a href={url} target="_balnk"  className="btn btn-sm btn-primary">Read More</a>
                 </div>
             </div>
-
         )
     }
 }
