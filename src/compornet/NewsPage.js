@@ -3,6 +3,7 @@ import Newsbage from './Newsbage'
 import Loding from './Loding';
 import InfiniteScroll from "react-infinite-scroll-component";
 
+
 export default class NewsPage extends Component {
 
     constructor() {
@@ -16,37 +17,36 @@ export default class NewsPage extends Component {
     }
 
     async componentDidMount() {
-                  //loading gif show and waait for load loading 
+        this.setState({ page: this.state.page + 1 })
         let url = `https://newsapi.org/v2/top-headlines?category=${this.props.categ}&country=${this.props.country}&apiKey=${this.props.apikey}&pageSize=${this.props.pagesize}&page=${this.state.page}`
         let data = await fetch(url);            //get data from Url
         let parseData = await data.json();      //to convart data in to json formet 
         this.setState({                         //update data 
             articles: parseData.articles,
-            totalResults: parseData.totalResults,
-            // page: this.state.page + 1
+            totalResults: parseData.totalResults
         });
     }
 
     fetchMoreData = async () => {
-        this.setState({ page: this.state.page + 1 })
         let url = `https://newsapi.org/v2/top-headlines?category=${this.props.categ}&country=${this.props.country}&apiKey=${this.props.apikey}&pageSize=${this.props.pagesize}&page=${this.state.page}`
         let data = await fetch(url);            //get data from Url
         let parseData = await data.json();      //to convart data in to json formet 
         this.setState({                         //update data 
             articles: this.state.articles.concat(parseData.articles),
             totalResults: parseData.totalResults,
-            load: false
+            load: false,
+            page: this.state.page + 1
         });
     };
 
     render() {
         return (
             <>
-                <button type="button" disabled="True" className="btn mx-3 btn-secondary">Total News: {this.state.totalResults}</button>
+                <button  type="button" disabled="True" className="btn mx-3 btn-secondary">Total News: {this.state.totalResults}</button>
                 <InfiniteScroll
                     dataLength={this.state.articles.length}
                     next={this.fetchMoreData}
-                    hasMore={this.state.articles !== this.state.totalResults}
+                    hasMore={this.state.articles.length !== this.state.totalResults}
                     loader={<Loding />}>
                     <div className='container my-3'>
                         <div className='row'>
