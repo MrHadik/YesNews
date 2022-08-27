@@ -1,13 +1,12 @@
 
-import React, { Component } from 'react'
+import React from 'react'
 import yesnews from './yesnews.png'
 
-export class Newsbage extends Component {
+const Newsbage =(props)=> {
 
-    render() {
-        let { title, dipriptin, imgURL, url, author, pdate } = this.props; //To Get Data from props
+   
+        let { title, dipriptin, imgURL, url, author, pdate } = props; //To Get Data from props
         return (
-
             <div className="card my-2"  >
                 <img src={imgURL?imgURL:yesnews} className="card-img-top" alt="..." /> 
                 <div className="card-body ">
@@ -18,7 +17,6 @@ export class Newsbage extends Component {
                 </div>
             </div>
         )
-    }
 }
 
 export default Newsbage

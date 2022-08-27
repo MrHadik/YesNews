@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 import lod from './Infinity.gif'
-export default class loding extends Component {
-  render() {
+
+const loding = () => {
     return (
       <div className='text-center my-5'>
         <img  src={lod} alt="loding"></img>
       </div>
     )
-  }
 }
+
+export default loding

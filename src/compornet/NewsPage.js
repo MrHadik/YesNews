@@ -1,64 +1,62 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import Newsbage from './Newsbage'
 import Loding from './Loding';
 import InfiniteScroll from "react-infinite-scroll-component";
 
+const NewsPage = (props) => {
+    const [articles, setarticles] = useState([])
+    const [page, setpage] = useState(1)
+    const [load, setload] = useState(false)
+    const [totalResults, settotalResults] = useState(0)
 
-export default class NewsPage extends Component {
+    useEffect(() => {
+        fetchData()
+    },[])
 
-    constructor() {
-        super();
-        this.state = {
-            articles: [],       //for news 
-            page: 1,            //pagenumber to get news next page  
-            load: false,          //For loading image  // if loading true is show  and false it hide
-            totalResults: 0
-        }
-    }
-
-    async componentDidMount() {
-        this.setState({ page: this.state.page + 1 })
-        let url = `https://newsapi.org/v2/top-headlines?category=${this.props.categ}&country=${this.props.country}&apiKey=${this.props.apikey}&pageSize=${this.props.pagesize}&page=${this.state.page}`
+    const fetchData = async () => {
+        setpage(page + 1)
+        setload(true)
+        let url = `https://newsapi.org/v2/top-headlines?category=${props.categ}&country=${props.country}&apiKey=${props.apikey}&pageSize=${props.pagesize}&page=${page}`
         let data = await fetch(url);            //get data from Url
         let parseData = await data.json();      //to convart data in to json formet 
-        this.setState({                         //update data 
-            articles: parseData.articles,
-            totalResults: parseData.totalResults
-        });
+        setarticles(parseData.articles)
+        setload(false)
+        settotalResults(parseData.totalResults)
     }
 
-    fetchMoreData = async () => {
-        let url = `https://newsapi.org/v2/top-headlines?category=${this.props.categ}&country=${this.props.country}&apiKey=${this.props.apikey}&pageSize=${this.props.pagesize}&page=${this.state.page}`
+    const fetchMoreData = async () => {
+        let url = `https://newsapi.org/v2/top-headlines?category=${props.categ}&country=${props.country}&apiKey=${props.apikey}&pageSize=${props.pagesize}&page=${page}`
         let data = await fetch(url);            //get data from Url
         let parseData = await data.json();      //to convart data in to json formet 
-        this.setState({                         //update data 
-            articles: this.state.articles.concat(parseData.articles),
-            totalResults: parseData.totalResults,
-            load: false,
-            page: this.state.page + 1
-        });
+        setarticles(articles.concat(parseData.articles))
+        settotalResults(parseData.totalResults)
+        setload(false)
+        setpage(page + 1)
+
     };
 
-    render() {
-        return (
-            <>
-                <button  type="button" disabled="True" className="btn mx-3 btn-secondary">Total News: {this.state.totalResults}</button>
-                <InfiniteScroll
-                    dataLength={this.state.articles.length}
-                    next={this.fetchMoreData}
-                    hasMore={this.state.articles.length !== this.state.totalResults}
-                    loader={<Loding />}>
-                    <div className='container my-3'>
-                        <div className='row'>
-                            {this.state.articles !== undefined && this.state.articles.map(element => {
-                                return <div className='col-md-4' key={element.url}>
-                                    <Newsbage title={element.title} author={element.author ? element.author : "Unkowe"} pdate={element.publishedAt} url={element.url} imgURL={element.urlToImage} dipriptin={element.description} />
-                                </div>
-                            })}
-                        </div></div>
-                </InfiniteScroll >
-            </>
-        )
-    }
+    return (
+        <>
+            <div className='container my-3'><button type="button" disabled="True" className="btn  btn-secondary">Total News: {totalResults}</button></div>
+
+            {load && <Loding />}
+            <InfiniteScroll
+                dataLength={articles.length}
+                next={fetchMoreData}
+                hasMore={articles.length !== totalResults}
+                loader={<Loding />}>
+                <div className='container mb-3'>
+                    <div className='row'>
+                        {articles !== undefined && articles.map(element => {
+                            return <div className='col-md-4' key={element.url}>
+                                <Newsbage title={element.title} author={element.author ? element.author : "Unkowe"} pdate={element.publishedAt} url={element.url} imgURL={element.urlToImage} dipriptin={element.description} />
+                            </div>
+                        })}
+                    </div></div>
+            </InfiniteScroll >
+        </>
+    )
+
 }
 
+export default NewsPage

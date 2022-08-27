@@ -8,17 +8,15 @@ import {
   Routes
 } from "react-router-dom";
 
-export default class App extends Component {
-  render() {
-   
+const App = ()=> {
+ 
     const data ={
-      key: 'a02dfc2ab6584347a08d36cb4c05322f',
+      key: '50616e7020ee4e3499397bf81304b7f6',
       country: 'in',
       pagesize: 6
     }
     return (
       <div>
-        
         <Router>
         <NevBar />
           <Routes>
@@ -33,6 +31,7 @@ export default class App extends Component {
         </Router>
       </div>
     )
-  }
+ 
 }
 
+export default App
