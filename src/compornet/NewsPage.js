@@ -37,14 +37,17 @@ const NewsPage = (props) => {
 
     return (
         <>
-            <div className='container my-3'><button type="button" disabled="True" className="btn  btn-secondary">Total News: {totalResults}</button></div>
+            <div className='container mt-5 my-3 '>
+                <button type="button" disabled="True" className="btn mt-4 btn-secondary">Total News: {totalResults}</button>
+            </div>
 
             {load && <Loding />}
+
             <InfiniteScroll
                 dataLength={articles.length}
                 next={fetchMoreData}
                 hasMore={articles.length !== totalResults}
-                loader={<Loding />}>
+                loader={<Loding/>}>
                 <div className='container mb-3'>
                     <div className='row'>
                         {articles !== undefined && articles.map(element => {
@@ -52,7 +55,8 @@ const NewsPage = (props) => {
                                 <Newsbage title={element.title} author={element.author ? element.author : "Unkowe"} pdate={element.publishedAt} url={element.url} imgURL={element.urlToImage} dipriptin={element.description} />
                             </div>
                         })}
-                    </div></div>
+                    </div>
+                </div>
             </InfiniteScroll >
         </>
     )

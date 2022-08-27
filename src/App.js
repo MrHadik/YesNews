@@ -9,7 +9,6 @@ import {
 } from "react-router-dom";
 
 const App = ()=> {
- 
     const data ={
       key: '50616e7020ee4e3499397bf81304b7f6',
       country: 'in',
