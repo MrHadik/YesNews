@@ -1,5 +1,5 @@
 import './App.css';
-import React, { Component } from 'react'
+import React from 'react'
 import NevBar from './compornet/NevBar';
 import NewsPage from './compornet/NewsPage';
 import {
@@ -10,9 +10,9 @@ import {
 
 const App = ()=> {
     const data ={
-      key: '50616e7020ee4e3499397bf81304b7f6',
+      key: 'a02dfc2ab6584347a08d36cb4c05322f',
       country: 'in',
-      pagesize: 6
+      pagesize: 9
     }
     return (
       <div>
