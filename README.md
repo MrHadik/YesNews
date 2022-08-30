@@ -11,6 +11,14 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+![image](https://user-images.githubusercontent.com/74814143/187456751-99a8abbe-07b6-4070-aba7-4bc5bfc0ab97.png)
+
+
+![image](https://user-images.githubusercontent.com/74814143/187457936-aab74fd4-2842-49b2-887b-e94d52190ac6.png)
+
+
+![image](https://user-images.githubusercontent.com/74814143/187458400-8dd94695-f42c-4dce-8993-35b8a5f3d580.png)
+
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
@@ -46,6 +54,8 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 ### Code Splitting
+
+![image](https://user-images.githubusercontent.com/74814143/187456751-99a8abbe-07b6-4070-aba7-4bc5bfc0ab97.png)
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
